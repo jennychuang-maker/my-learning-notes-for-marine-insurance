@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海上保險：H&M vs P&I 互動教學</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 使用 Tailwind 推薦的 Inter 字體，並加入中文備用字體 */
+        body {
+            font-family: 'Inter', "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Arial", sans-serif;
+        }
+        /* 測驗按鈕的自訂樣式 */
+        .quiz-btn {
+            @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 cursor-pointer;
+        }
+        .quiz-btn:disabled {
+            @apply opacity-50 cursor-not-allowed;
+        }
+        /* 測驗回饋樣式 */
+        .correct-answer {
+            @apply bg-green-100 border border-green-400 text-green-700 py-2 px-4 rounded-lg;
+        }
+        .incorrect-answer {
+            @apply bg-red-100 border border-red-400 text-red-700 py-2 px-4 rounded-lg;
+        }
+        /* 標記正確或錯誤的按鈕 */
+        .btn-correct {
+            @apply bg-green-600 hover:bg-green-600;
+        }
+        .btn-incorrect {
+            @apply bg-red-600 hover:bg-red-600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-10">
+        
+        <!-- 標題 -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-800">海上保險核心</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-700">船東責任險 (P&I) vs 船體保險 (H&M)</h2>
+            <p class="mt-4 text-lg">透過這個互動教學，快速搞懂兩者的關鍵區別！</p>
+        </header>
+
+        <!-- 核心定義比較（卡片式） -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            
+            <!-- H&M 卡片 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <div class="bg-blue-700 p-5">
+                    <h2 class="text-2xl font-bold text-white flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7v10l8 4m0-10V3" />
+                        </svg>
+                        船體保險 (H&M)
+                    </h2>
+                    <p class="text-blue-100 mt-1">Hull & Machinery</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-xl font-semibold text-gray-800 mb-4">保的是「船本身」的<span class="text-blue-700 font-bold">財產損失</span>。</p>
+                    <p class="mb-4">您可以把它想像成是您愛車的「**車體險**」。如果您的船因為意外事故而受到物理上的損壞，它就會出面理賠修復費用。</p>
+                    <h3 class="text-lg font-bold mb-3 text-blue-700">主要承保範圍：</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>船舶的物理損失或損壞 (如擱淺、火災)</li>
+                        <li>碰撞責任 (傳統上為 3/4 RDC)</li>
+                        <li>共同海損 (General Average)</li>
+                        <li>救助費用 (Salvage Charges)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- P&I 卡片 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                <div class="bg-green-700 p-5">
+                    <h2 class="text-2xl font-bold text-white flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        船東責任險 (P&I)
+                    </h2>
+                    <p class="text-green-100 mt-1">Protection & Indemnity</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-xl font-semibold text-gray-800 mb-4">保的是船東「對<span class="text-green-700 font-bold">第三方的法律責任</span>」。</p>
+                    <p class="mb-4">它承保 H&M 不保的「人」和「物」的責任。通常由船東們組成的「**互保協會 (P&I Clubs)**」提供。</p>
+                    <h3 class="text-lg font-bold mb-3 text-green-700">主要承保範圍：</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>碰撞責任 (H&M 未賠的 1/4 及超額)</li>
+                        <li>對第三方財產的損害 (FFO, 如碼頭)</li>
+                        <li>人身傷亡 (船員、乘客、碼頭工人)</li>
+                        <li>污染責任 (漏油清理費、罰款)</li>
+                        <li>貨物責任 (對運載貨物的損壞)</li>
+                        <li>沉船移除 (Wreck Removal)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 互動測驗區 -->
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8">互動測驗：情境模擬</h2>
+            
+            <div id="quiz-container" class="space-y-6 max-w-3xl mx-auto">
+                
+                <!-- 問題 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-lg font-semibold mb-4">
+                        <span class="font-bold text-blue-700">情境 1：</span> 您的船因颱風**擱淺**，導致船底嚴重受損。
+                    </p>
+                    <div id="q1-buttons" class="flex flex-wrap gap-3">
+                        <button class="quiz-btn" onclick="checkAnswer(1, 'A', this)">A. 船體保險 (H&M)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(1, 'B', this)">B. 船東責任險 (P&I)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(1, 'C', this)">C. H&M + P&I 共同理賠</button>
+                    </div>
+                    <div id="feedback-1" class="mt-4"></div>
+                </div>
+
+                <!-- 問題 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-lg font-semibold mb-4">
+                        <span class="font-bold text-blue-700">情境 2：</span> S. 您的船在航行時，不慎與**另一艘商船**發生**碰撞**。
+                    </p>
+                    <div id="q2-buttons" class="flex flex-wrap gap-3">
+                        <button class="quiz-btn" onclick="checkAnswer(2, 'A', this)">A. 船體保險 (H&M)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(2, 'B', this)">B. 船東責任險 (P&I)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(2, 'C', this)">C. H&M + P&I 共同理賠</button>
+                    </div>
+                    <div id="feedback-2" class="mt-4"></div>
+                </div>
+
+                <!-- 問題 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-lg font-semibold mb-4">
+                        <span class="font-bold text-blue-700">情境 3：</span> 您的船在靠泊時，因操作失誤**撞壞了碼頭**的起重機。
+                    </p>
+                    <div id="q3-buttons" class="flex flex-wrap gap-3">
+                        <button class="quiz-btn" onclick="checkAnswer(3, 'A', this)">A. 船體保險 (H&M)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(3, 'B', this)">B. 船東責任險 (P&I)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(3, 'C', this)">C. H&M + P&I 共同理賠</button>
+                    </div>
+                    <div id="feedback-3" class="mt-4"></div>
+                </div>
+
+                <!-- 問題 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-lg font-semibold mb-4">
+                        <span class="font-bold text-blue-700">情境 4：</span> 您的船發生**漏油**事故，造成海灘污染，被政府要求清理並罰款。
+                    </p>
+                    <div id="q4-buttons" class="flex flex-wrap gap-3">
+                        <button class="quiz-btn" onclick="checkAnswer(4, 'A', this)">A. 船體保險 (H&M)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(4, 'B', this)">B. 船東責任險 (P&I)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(4, 'C', this)">C. H&M + P&I 共同理賠</button>
+                    </div>
+                    <div id="feedback-4" class="mt-4"></div>
+                </div>
+
+                <!-- 問題 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-lg font-semibold mb-4">
+                        <span class="font-bold text-blue-700">情境 5：</span> 一名**船員**在甲板上作業時不幸受傷，需要醫療和賠償。
+                    </p>
+                    <div id="q5-buttons" class="flex flex-wrap gap-3">
+                        <button class="quiz-btn" onclick="checkAnswer(5, 'A', this)">A. 船體保險 (H&M)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(5, 'B', this)">B. 船東責任險 (P&I)</button>
+                        <button class="quiz-btn" onclick="checkAnswer(5, 'C', this)">C. H&M + P&I 共同理賠</button>
+                    </div>
+                    <div id="feedback-5" class="mt-4"></div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 存放正確答案
+        const correctAnswers = {
+            1: 'A', // 情境1: H&M
+            2: 'C', // 情境2: Both (3/4 H&M, 1/4 P&I)
+            3: 'B', // 情境3: P&I (FFO)
+            4: 'B', // 情境4: P&I (Pollution)
+            5: 'B'  // 情境5: P&I (Crew)
+        };
+
+        // 答案的解說
+        const explanations = {
+            1: '<strong>正確！</strong> H&M (船體保險) 承保船舶本身的物理損失或損壞。',
+            2: '<strong>正確！</strong> 傳統上，H&M 承擔 3/4 的碰撞責任，P&I 承擔 1/4 及超額部分。因此兩者都會介入。',
+            3: '<strong>正確！</strong> 這是 P&I 的「FFO (Fixed & Floating Objects)」責任，H&M 不承保對非船舶物體 (如碼頭) 的損害。',
+            4: '<strong>正確！</strong> 污染責任 (Pollution Liability) 是 P&I 的核心承保範圍之一。',
+            5: '<strong>正確！</strong> 對船員的人身傷亡 (Personal Injury) 責任是由 P&I 承保的。'
+        };
+
+        // 錯誤時的提示
+        const wrongFeedback = {
+            1: '<strong>不正確。</strong> 正確答案是 <strong>H&M</strong>。因為這是船舶本身的物理損壞，由 H&M 承保。',
+            2: '<strong>不正確。</strong> 正確答案是 <strong>H&M + P&I</strong>。因為 H&M 賠 3/4，P&I 賠 1/4，兩者都會介入。',
+            3: '<strong>不正確。</strong> 正確答案是 <strong>P&I</strong>。因為 H&M 只保「船碰船」，撞碼頭屬於 P&I 的 FFO 責任。',
+            4: '<strong>不正確。</strong> 正確答案是 <strong>P&I</strong>。污染是典型的 P&I 責任。',
+            5: '<strong>不正確。</strong> 正確答案是 <strong>P&I</strong>。對「人」的責任 (尤其是船員) 是 P&I 的核心。'
+        };
+
+        /**
+         * 檢查答案
+         * @param {number} questionNum - 問題編號
+         * @param {string} selectedAnswer - 選擇的答案 (A, B, C)
+         * @param {HTMLElement} clickedButton - 被點擊的按鈕
+         */
+        function checkAnswer(questionNum, selectedAnswer, clickedButton) {
+            const feedbackEl = document.getElementById(`feedback-${questionNum}`);
+            const buttonsContainer = document.getElementById(`q${questionNum}-buttons`);
+            const buttons = buttonsContainer.querySelectorAll('button');
+            const correctAnswer = correctAnswers[questionNum];
+
+            // 禁用所有按鈕
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                // 答案正確
+                feedbackEl.innerHTML = explanations[questionNum];
+                feedbackEl.className = 'correct-answer';
+                clickedButton.classList.add('btn-correct');
+            } else {
+                // 答案錯誤
+                feedbackEl.innerHTML = wrongFeedback[questionNum];
+                feedbackEl.className = 'incorrect-answer';
+                clickedButton.classList.add('btn-incorrect');
+                
+                // 標記出正確答案
+                buttons.forEach(btn => {
+                    if (btn.onclick.toString().includes(`'${correctAnswer}'`)) {
+                        btn.classList.add('btn-correct');
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
