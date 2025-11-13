@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny的學習筆記</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 使用 Tailwind 推薦的 Inter 字體，並加入中文備用字體 */
+        body {
+            font-family: 'Inter', "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", "Arial", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 全螢幕置中容器 -->
+    <div class="flex items-center justify-center min-h-screen p-4">
+        
+        <!-- 主內容卡片 -->
+        <div class="bg-white rounded-xl shadow-2xl p-8 sm:p-12 max-w-lg w-full text-center transform transition-all hover:scale-105 duration-300">
+            
+            <!-- 主要標題 -->
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">
+                Jenny的學習筆記
+            </h1>
+            
+            <!-- 副標題 -->
+            <p class="text-lg text-gray-600 mb-10">
+                歡迎來到我的學習空間。點擊下方的標籤開始學習。
+            </p>
+            
+            <!-- 連結標籤 -->
+            <a href="interactive_marine_insurance.html" 
+               class="inline-block bg-blue-600 text-white font-bold text-lg py-3 px-8 rounded-lg shadow-lg transform transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1">
+                船東責任險 P&I vs 船體保險 H&M
+            </a>
+            
+            <!-- 
+                說明：
+                上面的 <a> 標籤中，href="interactive_marine_insurance.html" 是一個「相對連結」。
+                它假設這個 index.html 檔案和您的 interactive_marine_insurance.html 檔案
+                位於 GitHub 儲存庫的「同一個」資料夾層級中。
+            -->
+
+        </div>
+    </div>
+
+</body>
+</html>
