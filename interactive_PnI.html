@@ -36,7 +36,24 @@
         }
 
         h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
-        p.subtitle { opacity: 0.9; font-size: 1.1rem; }
+        p.subtitle { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .home-link:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
 
         .container {
             max-width: 960px;
@@ -185,6 +202,7 @@
 <header>
     <h1>⚓ P&I 保險觀念總複習 (終極完整版)</h1>
     <p class="subtitle">從核心定義到海事救助：我們的完整學習地圖</p>
+    <a href="https://jennychuang-maker.github.io/my-learning-notes-for-marine-insurance/index.html" class="home-link">Home (回到總目錄)</a>
 </header>
 
 <div class="container">
