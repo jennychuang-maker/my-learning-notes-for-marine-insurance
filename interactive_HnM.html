@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>船體保險互動教學指南</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Inter 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 使用 Noto Sans TC 作為中文字體，Inter 作為英文字體 */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* 隱藏內容的 class */
+        .tab-content.hidden {
+            display: none;
+        }
+        /* Tailwind's prose class for rich text formatting */
+        .prose {
+            color: #374151; /* text-gray-700 */
+        }
+        .prose h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem;
+            color: #1e3a8a; /* text-blue-800 */
+        }
+        .prose p {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+        .prose ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-12">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+        
+        <!-- 標題區域 -->
+        <header class="bg-gradient-to-r from-blue-800 to-blue-600 p-8 text-white shadow-lg relative">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">船體保險互動教學指南</h1>
+            <p class="text-lg text-blue-100">H&M Insurance Interactive Guide</p>
+
+            <!-- 新增的 Home 連結 -->
+            <a href="https://jennychuang-maker.github.io/my-learning-notes-for-marine-insurance/index.html" 
+               class="absolute top-6 right-8 bg-white text-blue-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-100 transition-colors text-sm md:text-base">
+               Home
+            </a>
+        </header>
+
+        <!-- 頁籤導覽列 -->
+        <nav class="flex flex-wrap border-b border-gray-200 bg-gray-50">
+            <button data-tab="concept" class="tab-button active-tab py-4 px-6 font-semibold text-sm md:text-base text-blue-700 border-b-4 border-blue-700 focus:outline-none">
+                基本概念
+            </button>
+            <button data-tab="coverage" class="tab-button py-4 px-6 font-semibold text-sm md:text-base text-gray-500 border-b-4 border-transparent hover:text-blue-600 hover:border-blue-300 focus:outline-none">
+                承保內容
+            </button>
+            <button data-tab="exclusions" class="tab-button py-4 px-6 font-semibold text-sm md:text-base text-gray-500 border-b-4 border-transparent hover:text-blue-600 hover:border-blue-300 focus:outline-none">
+                除外事項
+            </button>
+            <button data-tab="claims" class="tab-button py-4 px-6 font-semibold text-sm md:text-base text-gray-500 border-b-4 border-transparent hover:text-blue-600 hover:border-blue-300 focus:outline-none">
+                理賠通報
+            </button>
+            <button data-tab="mechanism" class="tab-button py-4 px-6 font-semibold text-sm md:text-base text-gray-500 border-b-4 border-transparent hover:text-blue-600 hover:border-blue-300 focus:outline-none">
+                理賠機制
+            </button>
+            <!-- 新增的測驗頁籤 -->
+            <button data-tab="quiz" class="tab-button py-4 px-6 font-semibold text-sm md:text-base text-gray-500 border-b-4 border-transparent hover:text-blue-600 hover:border-blue-300 focus:outline-none">
+                隨堂測驗
+            </button>
+        </nav>
+
+        <!-- 內容區域 -->
+        <main class="p-8 md:p-12">
+            
+            <!-- 1. 基本概念 -->
+            <section id="concept" class="tab-content prose max-w-none">
+                <h3>1. 什麼是船體保險？</h3>
+                <p>
+                    船體保險（Hull & Machinery Insurance, H&M），是海上保險中最古老、最核心的險種之一。它的主要目的是為船舶本身（包括船殼、主機、儀器、設備等）在航行或作業中可能遭遇的各種「海上風險」及「其他特定風險」提供經濟保障。
+                </p>
+                <p>
+                    簡單來說，就像您為汽車購買「車體險」一樣，船東為他們昂貴的船舶購買「船體險」，以應對船舶可能發生的毀損或滅失。
+                </p>
+
+                <h3>2. 為什麼需要船體保險？</h3>
+                <ul>
+                    <li><strong>資產價值高：</strong>船舶造價昂貴，一旦發生事故，損失金額極為龐大。</li>
+                    <li><strong>風險高：</strong>海洋環境變幻莫測，船舶在航行中面臨惡劣天氣、碰撞、擱淺、火災、海盜等多重風險。</li>
+                    <li><strong>營運保障：</strong>船舶是船東的主要生財工具，保險可以確保在船舶受損時，能獲得修復資金，盡快恢復營運。</li>
+                    <li><strong>融資需求：</strong>銀行在提供船舶貸款時，通常會強制要求船東必須投保足額的船體保險，以保障其債權。</li>
+                </ul>
+            </section>
+
+            <!-- 2. 主要承保內容 -->
+            <section id="coverage" class="tab-content hidden prose max-w-none">
+                <h3>承保哪些風險？</h3>
+                <p>
+                    船體保險的承保範圍主要依據國際通用的保險條款，例如英國協會條款 (Institute Time Clauses - Hulls, 簡稱 ITC-Hulls)。其保障內容非常廣泛，大致可分為以下幾類：
+                </p>
+                
+                <h3>A. 海上風險 (Perils of the Seas)</h3>
+                <p>指源於海洋的、非人力所能預測或抵抗的意外事故。例如：</p>
+                <ul>
+                    <li>惡劣天氣（暴風、巨浪）</li>
+                    <li>擱淺 (Stranding)</li>
+                    <li>沉沒 (Sinking)</li>
+                    <li>碰撞 (Collision)</li>
+                    <li>觸碰浮動或固定物體（如浮冰、碼頭）</li>
+                </ul>
+
+                <h3>B. 其他特定風險</h3>
+                <p>除了海上風險，保單還承保其他人為或外來因素造成的損失：</p>
+                <ul>
+                    <li>火災、爆炸 (Fire, Explosion)</li>
+                    <li>來自陸上的車輛或飛行物體的碰撞</li>
+                    <li>地震、火山爆發或雷電</li>
+                    <li>投棄 (Jettison)（為共同安全而將船上物品丟入海中）</li>
+                    <li>海盜行為 (Piracy)（在某些條款中）</li>
+                </ul>
+
+                <h3>C. 擴充保障 (Inchmaree Clause)</h3>
+                <p>這是一個非常重要的擴充條款，它承保了因下列原因導致的損失：</p>
+                <ul>
+                    <li>船長、船員、引水人的疏忽 (Negligence)</li>
+                    <li>修船人或租船人的疏忽</li>
+                    <li>裝卸貨物或添加燃料過程中的意外</li>
+                    <li>船體或機器的潛在缺陷 (Latent Defect)</li>
+                    <li>船長、船員的惡意行為 (Barratry)</li>
+                </ul>
+
+                <h3>D. 相關費用與責任</h3>
+                <ul>
+                    <li><strong>碰撞責任 (Running Down Clause, RDC)：</strong> 承保因本船過失碰撞他船時，依法應賠付給「他船」的損失。但請注意，傳統 RDC 只賠付 3/4 的責任。</li>
+                    <li><strong>共同海損 (General Average)：</strong> 承保本船在遭遇共同危險時，為全體利益而採取的共同海損措施（如犧牲船體、支付救助費）所應分攤的費用。</li>
+                    <li><strong>救助費用 (Salvage Charges)：</strong> 為救助遇險船舶所支付的合理費用。</li>
+                </ul>
+            </section>
+
+            <!-- 3. 除外不保事項 -->
+            <section id="exclusions" class="tab-content hidden prose max-w-none">
+                <h3>哪些情況「不」承保？</h3>
+                <p>
+                    保險並非萬能，船體保險也有其明確的除外責任。以下為最常見的除外事項，這些風險通常需要購買專門的附加險（如戰爭險）來承保：
+                </p>
+                
+                <h3>A. 戰爭、罷工風險 (War & SRCC Risks)</h3>
+                <ul>
+                    <li>戰爭、內戰、革命、叛亂或任何敵對行為</li>
+                    <li>捕獲、扣押、拘留（海盜除外）</li>
+                    <li>水雷、魚雷、炸彈等戰爭遺留武器</li>
+                    <li>罷工者、工廠關閉、勞工騷動、暴動或民變</li>
+                    <li>任何恐怖主義行為</li>
+                </ul>
+
+                <h3>B. 船東可控的風險</h3>
+                <ul>
+                    <li><strong>船東的故意行為 (Willful Misconduct)：</strong> 船東或其管理人的故意不當行為導致的損失。</li>
+                    <li><strong>不適航 (Unseaworthiness)：</strong> 船舶在開航時，船東已知其處於不適航狀態（如船體結構有問題、未配足船員、證書不齊全）。</li>
+                    <li><strong>正常耗損 (Wear and Tear)：</strong> 船舶正常的磨損、鏽蝕、自然老化。</li>
+                    <li><strong>不當修理：</strong> 因不當修理或設計錯誤導致的損失（但若因此引發其他承保風險，如火災，則火災損失可賠）。</li>
+                </ul>
+
+                <h3>C. 其他特定除外</h3>
+                <ul>
+                    <li>核風險 (Nuclear Risks)</li>
+                    <li>化學、生物、生化武器攻擊</li>
+                    <li>船舶本身的污染（例如漏油造成的船體污染）</li>
+                </ul>
+            </section>
+
+            <!-- 4. 理賠通報 -->
+            <section id="claims" class="tab-content hidden prose max-w-none">
+                <h3>發生事故了，該怎麼辦？</h3>
+                <p>
+                    當船舶不幸發生可能引起保險索賠的事故時，船東或船長必須立即採取行動。正確且及時的通報是理賠成功的關鍵第一步。
+                </p>
+                
+                <h3>1. 立即通知 (Immediate Notice)</h3>
+                <p>
+                    船東在得知事故發生後，必須「立即」通知保險公司或其指定的保險經紀人。
+                </p>
+                <ul>
+                    <li><strong>通知誰？</strong> 保單上通常會列明理賠聯絡窗口（保險公司、經紀人或P&I保險通訊代理）。</li>
+                    <li><strong>通知內容？</strong> 應包含人、船、時、地、事故概要。</li>
+                    <li><strong>為何要立即？</strong> 讓保險公司能及時介入，提供協助，並指派公證人。</li>
+                </ul>
+
+                <h3>2. 減輕損失 (Mitigate the Loss)</h3>
+                <p>
+                    船東有責任（如同未投保一樣）採取一切合理的措施，來防止或減輕損失的擴大。例如：
+                </p>
+                <ul>
+                    <li>若船舶擱淺，應尋求專業救助。</li>
+                    <li>若船舶進水，應盡力排水。</li>
+                    <li>若發生火災，應立即滅火。</li>
+                </ul>
+                <p>這些合理的施救費用，保險公司通常會予以賠償。</p>
+
+                <h3>3. 指派公證人 (Appoint a Surveyor)</h3>
+                <p>
+                    接獲通報後，保險公司通常會立即指派一位獨立的、專業的「海事公證人」（或稱「檢驗師」，Surveyor）登船。
+                </p>
+                <ul>
+                    <li>公證人的職責是勘查損害情況、鑑定受損範圍、分析事故原因，並估算修理費用。</li>
+                    <li>船東應全力配合公證人的檢驗工作，提供所需文件（如航海日誌）。</li>
+                </ul>
+                
+                <h3>4. 保存證據 (Preserve Evidence)</h3>
+                <p>
+                    船東應妥善保存所有與事故相關的證據，包括：
+                </p>
+                <ul>
+                    <li>航海日誌 (Log Book)</li>
+                    <li>海事報告 (Protest of Note)</li>
+                    <li>事故現場的照片和影片</li>
+                    <li>受損的零部件（切勿隨意丟棄）</li>
+                    <li>與他方的往來函電（如碰撞事故）</li>
+                </ul>
+            </section>
+            
+            <!-- 5. 理賠機制 -->
+            <section id="mechanism" class="tab-content hidden prose max-w-none">
+                <h3>理賠款是如何計算和支付的？</h3>
+                <p>
+                    在完成通報、勘驗和修理後，就進入了理賠文件的審核與計算階段。這通常是一個專業且複雜的過程。
+                </p>
+                
+                <h3>1. 提交索賠文件 (Submission of Documents)</h3>
+                <p>
+                    船東（或其經紀人）需要向保險公司提交一套完整的索賠文件，作為理算和賠付的依據。主要文件包括：
+                </p>
+                <ul>
+                    <li>公證報告 (Survey Report)</li>
+                    <li>修船廠的估價單和最終帳單 (Repair Invoices)</li>
+                    <li>航海日誌、海事報告</li>
+                    <li>船級社的證明文件</li>
+                    <li>合理的施救費用、拖船費用等單據</li>
+                </ul>
+                
+                <h3>2. 理算 (Adjustment)</h3>
+                <p>
+                    保險公司會審核所有文件，以確定：
+                </p>
+                <ul>
+                    <li>事故原因是否屬於承保範圍？</li>
+                    <li>修理的項目和費用是否合理且必要？（例如，不會賠付船東趁機升級設備的費用）</li>
+                    <li>是否有應分攤的項目？（例如共同海損）</li>
+                </ul>
+                <p>對於複雜的案件（尤其是共同海損），保險公司和船東會委託專業的「海損理算師」(Average Adjuster) 製作理算報告。</p>
+
+                <h3>3. 自負額 (Deductible)</h3>
+                <p>
+                    船體保險通常都設有「自負額」（或稱「免賠額」）。這是指在保險公司賠付之前，船東必須自行承擔的一定金額。
+                </p>
+                <ul>
+                    <li>例如：保單自負額為 10 萬美元，本次核定理賠金額為 50 萬美元。</li>
+                    <li>保險公司實際支付：50 萬 - 10 萬 = 40 萬美元。</li>
+                    <li>如果核定損失僅 8 萬美元（低於自負額），則保險公司不予賠付。</li>
+                </ul>
+
+                <h3>4. 賠款支付 (Payment)</h3>
+                <p>
+                    在理算完成並扣除自負額後，保險公司將向船東支付核定的賠款金額，理賠程序至此完成。
+                </p>
+            </section>
+
+            <!-- 互動測驗 - 已改為頁籤內容 -->
+            <section id="quiz" class="tab-content hidden">
+                <!-- 將原本的測驗樣式包在一個 div 內，使其在切換時保持一致 -->
+                <div class="bg-blue-50 p-8 rounded-lg border border-blue-200">
+                    <h2 class="text-2xl font-bold text-blue-800 mb-6">隨堂測驗</h2>
+                    
+                    <!-- Q1 -->
+                    <div class="mb-6">
+                        <p class="font-semibold text-lg mb-2 text-gray-800">1. 船體保險（H&M）主要保障的對象是什麼？</p>
+                        <div class="space-y-2">
+                            <span class="ml-3 text-gray-700">A. 船上運輸的貨物</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q1" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 船舶本身（船殼、機器、設備）</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q1" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 船員的人身安全與醫療</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q1" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- Q2 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">2. 因「戰爭」或「罷工」導致的船舶損失，是否在「標準」船體保險的承保範圍內？</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q2" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 是，完全承保</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q2" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 否，這通常是「除外責任」</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q2" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- Q3 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">3. 當船舶發生事故時，船東（或船長）的首要步驟之一是什麼？</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q3" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 立即通知保險公司或其代理人</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q3" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 為了省錢，先自己嘗試修理</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q3" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 假裝沒事，繼續航行</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q3" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q4 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">4. 銀行在提供船舶貸款時，通常會要求船東投保船體險，其主要目的是：</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q4" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 確保船東的營運利潤</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q4" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 保障銀行的貸款債權（船舶作為抵押品）</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q4" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 降低船舶的航行風險</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q4" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q5 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">5. 承保「船員疏忽」或「機器潛在缺陷」所致損失的擴充條款，通常被稱為什麼？</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q5" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 碰撞責任條款 (RDC)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q5" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 共同海損條款 (General Average)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q5" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 殷齊馬利條款 (Inchmaree Clause)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q5" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q6 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">6. 船舶正常的「磨損、鏽蝕、自然老化」所造成的損失，是否屬於承保範圍？</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q6" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 是，船體險承保一切損失</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q6" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 否，這是標準的除外責任 (Wear and Tear)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q6" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q7 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">7. 碰撞責任條款 (RDC) 主要承保本船因過失碰撞他船時，應賠付給「他船」的損失，傳統上賠付比例為：</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q7" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 1/4 (四分之一)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q7" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 3/4 (四分之三)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q7" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 4/4 (全部)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q7" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q8 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">8. 事故發生後，船東有責任採取合理措施防止損失擴大（例如滅火、排水），這稱為什麼？</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q8" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 減輕損失 (Mitigate the Loss)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q8" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 委付 (Abandonment)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q8" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 共同海損 (General Average)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q8" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q9 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">9. 保險公司在計算賠款時，會先扣除一筆由船東自行負擔的金額，這筆金額稱為：</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q9" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 保險費 (Premium)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q9" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 自負額 / 免賠額 (Deductible)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q9" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 救助費用 (Salvage Charges)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q9" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <!-- 新增 Q10 -->
+                <div class="mb-6">
+                    <p class="font-semibold text-lg mb-2 text-gray-800">10. 事故發生後，由保險公司（或船東）指派登船勘查損害、分析原因的專業人士是：</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q10" value="a" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">A. 海損理算師 (Average Adjuster)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q10" value="b" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">B. 保險經紀人 (Broker)</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg bg-white border border-gray-200 hover:bg-gray-50">
+                            <input type="radio" name="q10" value="c" class="form-radio text-blue-600">
+                            <span class="ml-3 text-gray-700">C. 海事公證人 / 檢驗師 (Surveyor)</span>
+                        </label>
+                    </div>
+                    <span id="feedback-q10" class="ml-1 mt-2 text-sm font-semibold"></span>
+                </div>
+
+                <button id="check-answers" class="bg-blue-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    提交答案
+                </button>
+
+                <div id="quiz-result" class="mt-6 text-lg font-bold"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            // 頁籤切換邏輯
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-tab');
+
+                    // 更新按鈕樣式
+                    tabs.forEach(t => {
+                        t.classList.remove('active-tab', 'text-blue-700', 'border-blue-700');
+                        t.classList.add('text-gray-500', 'border-transparent', 'hover:text-blue-600', 'hover:border-blue-300');
+                    });
+                    tab.classList.add('active-tab', 'text-blue-700', 'border-blue-700');
+                    tab.classList.remove('text-gray-500', 'border-transparent', 'hover:text-blue-600', 'hover:border-blue-300');
+
+                    // 顯示對應內容
+                    contents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // 測驗邏輯
+            const checkButton = document.getElementById('check-answers');
+            // 更新答案
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'a',
+                q4: 'b',
+                q5: 'c',
+                q6: 'b',
+                q7: 'b',
+                q8: 'a',
+                q9: 'b',
+                q10: 'c'
+            };
+
+            // 輔助函數：檢查單一問題
+            function checkQuestion(qNum, correctAns, correctMsg, errorMsg) {
+                const q = document.querySelector(`input[name="q${qNum}"]:checked`);
+                const feedback = document.getElementById(`feedback-q${qNum}`);
+                if (q) {
+                    if (q.value === correctAns) {
+                        feedback.textContent = correctMsg;
+                        feedback.className = 'ml-1 mt-2 text-sm font-semibold text-green-600';
+                        return 1; // 答對
+                    } else {
+                        feedback.textContent = errorMsg;
+                        feedback.className = 'ml-1 mt-2 text-sm font-semibold text-red-600';
+                        return 0; // 答錯
+                    }
+                } else {
+                    feedback.textContent = '請選擇一個答案。';
+                    feedback.className = 'ml-1 mt-2 text-sm font-semibold text-gray-500';
+                    return -1; // 未作答
+                }
+            }
+
+            checkButton.addEventListener('click', () => {
+                let score = 0;
+                let answeredCount = 0;
+                const totalQuestions = 10;
+
+                const results = [
+                    checkQuestion(1, correctAnswers.q1, '答對了！船體險保障船舶本身。貨物需投保貨物險。', '答錯了。正確答案是 B。'),
+                    checkQuestion(2, correctAnswers.q2, '答對了！戰爭和罷工風險是標準除外責任，需另外加保。', '答錯了。正確答案是 B。'),
+                    checkQuestion(3, correctAnswers.q3, '答對了！立即通知保險公司是理賠的第一要務。', '答錯了。正確答案是 A。'),
+                    checkQuestion(4, correctAnswers.q4, '答對了！船舶是銀行的抵押品，保險能保障其價值。', '答錯了。正確答案是 B。'),
+                    checkQuestion(5, correctAnswers.q5, '答對了！這是著名的殷齊馬利條款。', '答錯了。正確答案是 C。'),
+                    checkQuestion(6, correctAnswers.q6, '答對了！正常耗損 (Wear and Tear) 是除外責任。', '答錯了。正確答案是 B。'),
+                    checkQuestion(7, correctAnswers.q7, '答對了！傳統 RDC 賠付 3/4，剩餘 1/4 通常由 P&I 承保。', '答錯了。正確答案是 B。'),
+                    checkQuestion(8, correctAnswers.q8, '答對了！被保險人有義務採取合理措施減輕損失。', '答錯了。正確答案是 A。'),
+                    checkQuestion(9, correctAnswers.q9, '答對了！自負額是船東需自行負擔的部分。', '答錯了。正確答案是 B。'),
+                    checkQuestion(10, correctAnswers.q10, '答對了！公證人 (Surveyor) 負責勘驗損害。理算師 (Adjuster) 負責計算。', '答錯了。正確答案是 C。')
+                ];
+
+                results.forEach(result => {
+                    if (result >= 0) { // 0 (答錯) 或 1 (答對)
+                        answeredCount++;
+                        score += result;
+                    }
+                });
+
+                // 顯示總分
+                const resultDiv = document.getElementById('quiz-result');
+                if (answeredCount === totalQuestions) {
+                    resultDiv.textContent = `測驗完成！您答對了 ${score} / ${totalQuestions} 題。`;
+                    if (score === totalQuestions) {
+                        resultDiv.className = 'mt-6 text-lg font-bold text-green-700';
+                    } else {
+                        resultDiv.className = 'mt-6 text-lg font-bold text-blue-800';
+                    }
+                } else {
+                     resultDiv.textContent = '請完成所有題目後再提交。';
+                     resultDiv.className = 'mt-6 text-lg font-bold text-red-600';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

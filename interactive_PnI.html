@@ -1,473 +1,485 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P&I 保險觀念總複習 | 互動學習系統 (終極完整版)</title>
+    <title>船東責任險 (P&I) 互動教學</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Noto Sans TC 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #005f73;
-            --secondary: #0a9396;
-            --light: #e0fbfc;
-            --accent: #ee9b00;
-            --accent-light: #fffbef;
-            --text: #2b2d42;
-            --white: #ffffff;
-            --correct: #28a745;
-            --wrong: #dc3545;
-        }
-
+        /* 設定基本字體和捲動行為 */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
-            color: var(--text);
-            background-color: #f7f9fc;
-            margin: 0;
-            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
         }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-bottom: 5px solid var(--accent);
+        html {
+            scroll-behavior: smooth;
         }
-
-        h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
-        p.subtitle { opacity: 0.9; font-size: 1.1rem; margin-bottom: 1rem; }
-
-        .home-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 15px;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
+        /* 測驗結果樣式 */
+        .question-item.correct {
+            background-color: #f0fff4; /* 綠色背景 */
+            border-left: 5px solid #48bb78; /* 綠色左框 */
+            animation: fadeIn 0.5s ease-in-out;
         }
-        .home-link:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: scale(1.05);
+        .question-item.incorrect {
+            background-color: #fff5f5; /* 紅色背景 */
+            border-left: 5px solid #f56565; /* 紅色左框 */
+            animation: fadeIn 0.5s ease-in-out;
         }
-
-        .container {
-            max-width: 960px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* 答對的選項標示 */
+        .reveal-correct-answer {
+            color: #2f855a; /* 深綠色文字 */
+            font-weight: 700;
         }
-
-        /* Navigation Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: var(--white);
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            background: var(--secondary);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 95, 115, 0.2);
-        }
-
-        /* Content Sections */
-        .section {
-            display: none;
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            animation: fadeIn 0.5s;
-        }
-
-        .section.active { display: block; }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        h2 { 
-            color: var(--primary); 
-            border-bottom: 3px solid var(--accent); 
-            padding-bottom: 10px; 
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Concept Cards */
-        .concept-card, .qa-card {
-            padding: 1.25rem;
-            margin: 1.5rem 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .concept-card {
-            background: var(--light);
-            border-left: 5px solid var(--secondary);
-        }
-
-        .qa-card {
-            background: var(--accent-light);
-            border-left: 5px solid var(--accent);
-        }
-
-        h3 { color: var(--secondary); margin-top: 0; }
-        .qa-card h3 { color: var(--accent); }
-
-        .highlight { font-weight: bold; color: var(--accent); }
-
-        /* Quiz Styles */
-        .quiz-container {
-            margin-top: 2rem;
-            border-top: 2px solid #eee;
-            padding-top: 2rem;
-        }
-
-        .question { font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem; }
-
-        .options { display: flex; flex-direction: column; gap: 10px; }
-
-        .option-btn {
-            padding: 12px 15px;
-            text-align: left;
-            background: #f8f9fa;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-        }
-
-        .option-btn:hover:not(.selected) { 
-            background: #e9ecef; 
-            border-color: var(--secondary);
-        }
-
-        .option-btn.selected.correct {
-            background-color: #d4edda;
-            color: #155724;
-            border-color: var(--correct);
-            font-weight: bold;
-        }
-
-        .option-btn.selected.wrong {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: var(--wrong);
-            font-weight: bold;
-        }
-
-        .feedback {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            display: none;
-            font-size: 1rem;
-        }
-        .feedback.correct { display: block; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .feedback.wrong { display: block; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<header>
-    <h1>⚓ P&I 保險觀念總複習 (終極完整版)</h1>
-    <p class="subtitle">從核心定義到海事救助：我們的完整學習地圖</p>
-    <a href="https://jennychuang-maker.github.io/my-learning-notes-for-marine-insurance/index.html" class="home-link">Home (回到總目錄)</a>
-</header>
+    <!-- 主內容容器 -->
+    <div class="container max-w-5xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-2xl my-10">
 
-<div class="container">
-    
-    <!-- Navigation -->
-    <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('topic0')">1. P&I 總覽</button>
-        <button class="tab-btn" onclick="openTab('topic6')">2. 貨物責任</button>
-        <button class="tab-btn" onclick="openTab('topic1')">3. 油污責任</button>
-        <button class="tab-btn" onclick="openTab('topic2')">4. 碰撞與 FFO</button>
-        <button class="tab-btn" onclick="openTab('topic3')">5. 船員賠償</button>
-        <button class="tab-btn" onclick="openTab('topic4')">6. 共同海損 (GA)</button>
-        <button class="tab-btn" onclick="openTab('topic5')">7. 海上救助</button>
-    </div>
-
-    <!-- NEW Topic 0: Overview -->
-    <div id="topic0" class="section active">
-        <h2>🧭 P&I 總覽：核心與運作</h2>
-        <div class="concept-card">
-            <h3>核心定義：保障「責任」的保險</h3>
-            <p>P&I 全名是 <strong>Protection & Indemnity (保障與補償)</strong>。它不賠船東「自己的財產」（例如船殼 H&M），而是賠船東對「第三方」應負的「法律賠償責任」。</p>
-            <ul>
-                <li><strong>P (保障)</strong>: 主要指對人 (船員、乘客) 和 FFO 的責任。</li>
-                <li><strong>I (補償)</strong>: 主要指對貨物 (Cargo) 的責任。</li>
-            </ul>
-        </div>
-        <div class="concept-card">
-            <h3>運作模式：船東互保 (Mutual)</h3>
-            <p>P&I 不是一般的商業保險公司。它是由船東們組成的「互保協會 (Club)」，以非營利方式運作。大家平時繳交保費 (Call)，若當年理賠太多錢不夠用，所有會員必須再補繳 (Supplementary Call)，風險共同承擔。</p>
-        </div>
-        <div class="concept-card">
-            <h3>主要除外事項 (Exclusions)</h3>
-            <p>P&I 不賠什麼？</p>
-            <ul>
-                <li>❌ <strong>船體或機器損壞</strong>：這是 H&M (船體險) 的工作。</li>
-                <li>❌ <strong>戰爭風險</strong>：這是 War Risk (戰爭險) 的工作。</li>
-                <li>❌ <strong>租金損失 (Loss of Hire)</strong>：這是船東的商業風險。</li>
-                <li>❌ <strong>故意的不法行為</strong>：例如故意走私或沉船。</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Topic 6 (Moved to 2nd position): Cargo Liability -->
-    <div id="topic6" class="section">
-        <h2>📦 貨物責任 (Cargo Liability)</h2>
-        <div class="concept-card">
-            <h3>P&I 的核心戰場：海牙威士比規則</h3>
-            <p>P&I 承保船東因運輸合約，對「貨物損壞、短少或延遲」所需負的賠償責任。這通常是 P&I 協會花費最多時間和金錢的戰場。</p>
-            <p>理賠的關鍵在於「海牙威士比規則 (Hague-Visby Rules)」，它規範了船東的責任與 17 項免責條款。</p>
-        </div>
-        <div class="concept-card">
-            <h3>最重要的免責：航海過失 (Nautical Fault)</h3>
-            <p>這是 17 項免責中最特別的一條！如果貨物損壞是「純粹」因為船長、船員在「駕駛或航行 (Navigation)」上的過失（例如算錯航向、看錯雷達），船東可以依法免除賠償責任。</p>
-        </div>
-        <div class="qa-card">
-            <h3>💡 關鍵概念：P&I 是幫船東，不是幫貨主</h3>
-            <p>P&I 的工作是幫助船東「防禦」來自貨主的索賠。如果船東依法（例如航海過失）免責，P&I 會協助船東打贏官司，P&I 只需支付訴訟費。如果船東有過失且無法免責（例如船舶不適航），P&I 才會賠付這筆錢。</p>
-        </div>
-
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/1)：</p>
-            <p>A 船的船長在駕駛台算錯航向，導致船隻擱淺，船上 500 萬美元貨物全毀。貨主憤怒地向船東索賠。P&I 應該怎麼做？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic6-fb', '答錯了！P&I 是船東的保險，不是貨主的。P&I 的首要任務是保護船東，利用法律免責。')">A. 立即賠 500 萬給貨主 (P&I 負責賠貨)</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic6-fb', '答對了！這是「航海過失」的經典案例。船東對此免責，P&I 的工作是幫船東打贏這場官司，而不是賠錢給貨主。')">B. 協助船東引用「航海過失」免責，拒絕貨主索賠</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic6-fb', '答錯了！RDC (1/4) 規則只適用於「碰撞責任」，跟貨物責任無關。')">C. 只賠 1/4 (25%)，剩下 3/4 叫 H&M 賠</button>
-            </div>
-            <div id="topic6-fb" class="feedback"></div>
-        </div>
-    </div>
-
-    <!-- Topic 1: Oil Pollution -->
-    <div id="topic1" class="section">
-        <h2>🛢️ 油污責任 (Oil Pollution)</h2>
-        <div class="concept-card">
-            <h3>核心原則：先上車後補票</h3>
-            <p>法律採行<strong>「嚴格責任 (Strict Liability)」</strong>原則。為了保護環境與受害人，無論過失是誰的，漏油船的 P&I 必須<strong>先賠償</strong>，隨後再向真正的肇事者行使「代位求償權」。</p>
-        </div>
-        
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/1)：</p>
-            <p>B 船撞破了 A 船的油櫃導致漏油（B 船 100% 過失）。根據公約，受害漁民應該先找誰賠償？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic1-fb', '答錯了！關鍵在於「誰漏油，誰先賠」以保護受害人，這就是嚴格責任。A 船 P&I 賠完再去向 B 船追討。')">B 船的保險人 (因為是他的錯)</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic1-fb', '答對了！這就是「嚴格責任」的體現。A 船 P&I 必須先賠償，再回頭向 B 船代位求償。')">A 船的 P&I (因為油是從他那漏的)</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic1-fb', '答錯了！政府環保局是負責監督清理，但賠償責任會落在船東的保險人身上。')">政府環保局</button>
-            </div>
-            <div id="topic1-fb" class="feedback"></div>
-        </div>
-    </div>
-
-    <!-- Topic 2: Collision & FFO -->
-    <div id="topic2" class="section">
-        <h2>💥 碰撞責任 (Collision & FFO)</h2>
-        <div class="concept-card">
-            <h3>1. 撞船 (Collision)</h3>
-            <p>適用 RDC 條款。責任分攤：<strong>H&M (船體險) 賠 3/4</strong> (75%) + <strong>P&I 賠 1/4</strong> (25%)。</p>
-        </div>
-        <div class="concept-card">
-            <h3>2. 撞物 (FFO - Fixed & Floating Objects)</h3>
-            <p>撞到碼頭、浮標、平台等固定物體。責任分攤：通常 <strong>P&I 賠 100%</strong> (因為傳統 H&M 不賠)。</p>
-        </div>
-
-        <div class="qa-card">
-            <h3>💡 你的關鍵提問：撞到海上工作平台怎麼算？</h3>
-            <p>這就是 FFO 的經典案例！因為平台「不是船」，所以不適用 RDC 條款的 3/4 規則。H&M 不賠，P&I 必須 100% 承擔對平台的損害賠償。</p>
-        </div>
-
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/1)：</p>
-            <p>A 船先擦撞 B 船 (100 萬損失)，再失控撞毀碼頭 C (100 萬損失)。A 船的 P&I 總共要賠多少？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic2-fb', '答錯了！你只算了撞船 (Collision) 的 1/4。')">A. 25 萬美元</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic2-fb', '答錯了！你只算了撞碼頭 (FFO) 的 100%。')">B. 100 萬美元</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic2-fb', '答對了！(撞船 B: 100w * 1/4 = 25w) + (撞碼頭 C: 100w * 100% = 100w) = 125w。')">C. 125 萬美元</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic2-fb', '答錯了！P&I 不會全包，H&M 也要分攤撞船 B 的 3/4 責任。')">D. 200 萬美元</button>
-            </div>
-            <div id="topic2-fb" class="feedback"></div>
-        </div>
-    </div>
-
-    <!-- Topic 3: Crew Claims -->
-    <div id="topic3" class="section">
-        <h2>🚑 船員賠償 (Crew Claims)</h2>
-        <div class="concept-card">
-            <h3>賠什麼？(Scope of Cover)</h3>
-            <ul>
-                <li>✅ 醫療費、喪葬費、殘廢賠償。</li>
-                <li>✅ <strong>遣返費 (Repatriation)</strong>：送生病船員回家。</li>
-                <li>✅ <strong>替換費 (Substitute)</strong>：新船員飛來的機票。</li>
-                <li>✅ <strong>繞道費 (Diversion)</strong>：為了救人多燒的油錢、港口費。</li>
-            </ul>
-        </div>
-        <div class="qa-card">
-            <h3>💡 你的關鍵提問：繞道少賺的錢賠嗎？</h3>
-            <p>不賠！P&I 只賠「額外支出 (Out of Pocket)」，如油錢。但不賠「商業損失 (Loss of Hire)」，如少賺的租金。</p>
-        </div>
-
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/2)：</p>
-            <p>大副生病下船，船公司派新大副接班。P&I **「不需要」** 賠哪一筆？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic3a-fb', '答錯了！醫療費是 P&I 的核心承保項目。')">A. 原大副的手術費</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic3a-fb', '答錯了！遣返費是 P&I 必須賠的。')">B. 原大副飛回家的機票</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic3a-fb', '答錯了！替換人員的交通費 P&I 要賠。')">C. 新大副飛去歐洲的機票</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic3a-fb', '答對了！新船員的薪水是「營運成本」，不是「額外損失」，P&I 不賠。')">D. 新大副上船後的每月薪水</button>
-            </div>
-            <div id="topic3a-fb" class="feedback"></div>
-        </div>
-
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (2/2)：</p>
-            <p>因繞道救人被租家扣除 2 天租金共 4 萬美元。P&I 會賠這筆「停租損失」嗎？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic3b-fb', '答錯了！P&I 不賠商業利潤損失。')">A. 會，因為是為了救人</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic3b-fb', '答對了！P&I 只賠額外支出（油錢、港費），不賠少賺的租金。')">B. 不會，這是商業損失</button>
-            </div>
-            <div id="topic3b-fb" class="feedback"></div>
-        </div>
-    </div>
-
-    <!-- Topic 4: General Average (GA) -->
-    <div id="topic4" class="section">
-        <h2>⚖️ 共同海損 (General Average)</h2>
-        <div class="concept-card">
-            <h3>P&I 的角色：補漏洞</h3>
-            <p>P&I 不賠船東自己那份 GA（那是 H&M 的事）。P&I 只賠<strong>「收不回來的分攤額」</strong>。也就是因為船東違約（如不適航），導致貨主「合法拒付」的那部分 GA。</p>
-        </div>
-        <div class="qa-card">
-            <h3>💡 你的關鍵提問（含測驗錯誤修正）：</h3>
-            <p>你曾誤選 100 萬全賠。請記得：
-            <ul>
-                <li><strong>船東自己的 40 萬</strong> → 找 H&M。</li>
-                <li><strong>貨主拒付的 60 萬</strong> → 這才是 P&I 要賠的「額外損失」。</li>
-            </ul>
+        <!-- 標題 -->
+        <header class="text-center mb-10 relative">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-800">
+                P&I船東責任險介紹
+            </h1>
+            <p class="text-lg text-gray-600 mt-2">
+                全面了解 Protection & Indemnity Insurance
             </p>
-        </div>
+            <a href="https://jennychuang-maker.github.io/my-learning-notes-for-marine-insurance/index.html" class="absolute top-0 right-0 px-3 py-1 text-base text-blue-600 font-semibold rounded-lg hover:bg-blue-100 hover:text-blue-700 transition duration-300">Home</a>
+        </header>
 
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/1)：</p>
-            <p>GA 總額 100 萬（船 40, 貨 60）。因船東「不適航」，貨主拒付。P&I 要賠多少？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic4-fb', '答錯了！P&I 不賠 H&M 該付的錢。')">A. 0 元</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic4-fb', '答錯了！40 萬是 H&M 負責的船東自身分攤額。')">B. 40 萬美元</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic4-fb', '答對了！P&I 只賠「因船東過失導致貨主拒付」的那 60 萬。')">C. 60 萬美元</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic4-fb', '答錯了！(你上次的答案) H&M 仍需負責船東自己的 40 萬，P&I 不會全包。')">D. 100 萬美元</button>
+        <!-- 導覽列 -->
+        <nav class="sticky top-0 bg-white bg-opacity-90 backdrop-blur-md z-10 shadow-sm rounded-lg mb-10 p-4">
+            <div class="flex flex-wrap justify-center gap-3 md:gap-6">
+                <a href="#concept" class="px-4 py-2 text-gray-700 font-semibold rounded-md hover:bg-blue-100 hover:text-blue-700 transition duration-300">基本概念</a>
+                <a href="#coverage" class="px-4 py-2 text-gray-700 font-semibold rounded-md hover:bg-blue-100 hover:text-blue-700 transition duration-300">承保內容</a>
+                <a href="#exclusions" class="px-4 py-2 text-gray-700 font-semibold rounded-md hover:bg-blue-100 hover:text-blue-700 transition duration-300">除外事項</a>
+                <a href="#claims" class="px-4 py-2 text-gray-700 font-semibold rounded-md hover:bg-blue-100 hover:text-blue-700 transition duration-300">理賠機制</a>
+                <a href="#quiz" class="px-4 py-2 text-gray-700 font-semibold rounded-md hover:bg-blue-100 hover:text-blue-700 transition duration-300">隨堂測驗</a>
             </div>
-            <div id="topic4-fb" class="feedback"></div>
-        </div>
+        </nav>
+
+        <!-- 內容區域 -->
+        <main>
+            <!-- 1. 基本概念 -->
+            <section id="concept" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-700 mt-8 mb-5 border-l-4 border-blue-500 pl-4">
+                    1. 基本概念 (Basic Concept)
+                </h2>
+                <div class="space-y-4 text-base md:text-lg leading-relaxed">
+                    <p>船東責任險，全名為「船東保障與賠償責任保險」(Protection & Indemnity Insurance)，簡稱 P&I。它是一種特殊的「責任保險」，主要承保船東在營運船舶過程中，因法律或合約規定應對「第三方」承擔的賠償責任和相關費用。</p>
+                    <p>與「船體險」(Hull & Machinery, H&M) 不同，船體險主要承保「船舶本身」的損失或損壞（例如：船殼、機器設備因碰撞、擱淺、火災造成的損害）；而 P&I 則專注於「對外的責任」。</p>
+                    <p>P&I 保險主要由「保賠協會」(P&I Clubs) 提供。這些協會多為「互保組織」(Mutual Organization)，由船東會員共同組成，秉持著互助精神，共同分攤彼此的巨額賠償責任。</p>
+                </div>
+            </section>
+
+            <!-- 2. 主要承保內容 -->
+            <section id="coverage" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-700 mt-8 mb-5 border-l-4 border-blue-500 pl-4">
+                    2. 主要承保內容 (Main Coverage)
+                </h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">P&I 的承保範圍非常廣泛，幾乎涵蓋了船體險不保的「所有」第三方責任。主要項目包括：</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 人員責任 -->
+                    <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-xl text-blue-600 mb-3 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-2.13l-2.114 2.114a3 3 0 00-2.13 5.356V20M8 20v-2a3 3 0 00-5.356-2.13l-2.114 2.114a3 3 0 00-2.13 5.356V20" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 4c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z" />
+                            </svg>
+                            人員責任 (Liabilities to Persons)
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 pl-2 text-gray-700">
+                            <li>船員的傷亡、疾病及遣返費用。</li>
+                            <li>乘客的傷亡及行李損失責任。</li>
+                            <li>偷渡客、難民的相關處理及遣返費用。</li>
+                            <li>其他在船上或與船舶相關人員的傷亡責任。</li>
+                        </ul>
+                    </div>
+                    <!-- 貨物責任 -->
+                    <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-xl text-blue-600 mb-3 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                            貨物責任 (Cargo Liabilities)
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 pl-2 text-gray-700">
+                            <li>承運貨物的滅失、短少或損壞的賠償責任。</li>
+                            <li>因貨物處理不當引起的責任。</li>
+                            <li>共同海損中，貨方應分攤的部份（在特定情況下）。</li>
+                        </ul>
+                    </div>
+                    <!-- 汙染責任 -->
+                    <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-xl text-blue-600 mb-3 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343m11.314 11.314a8 8 0 01-11.314 0m11.314 0L20 21m-7.657-2.343L10 21m-3.657-2.343L4 21m0 0l-2.121-2.121" />
+                            </svg>
+                            汙染責任 (Pollution Liabilities)
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 pl-2 text-gray-700">
+                            <li>船舶造成的油污或其他污染事件。</li>
+                            <li>依據國際公約或當地法律產生的清潔費用、罰款及賠償。</li>
+                        </ul>
+                    </div>
+                    <!-- 其他責任 -->
+                    <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-xl text-blue-600 mb-3 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            碰撞及財產損害
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 pl-2 text-gray-700">
+                            <li>船舶碰撞碼頭、浮標等「固定或浮動設施」(FFO) 的責任。</li>
+                            <li>船舶碰撞責任中，船體險不賠的部份（傳統上為 1/4 RDC）。</li>
+                            <li>船舶沉沒後的「殘骸移除」(Wreck Removal) 費用。</li>
+                            <li>因船舶營運產生的罰款 (Fines)。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 除外不保事項 -->
+            <section id="exclusions" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-700 mt-8 mb-5 border-l-4 border-blue-500 pl-4">
+                    3. 除外不保事項 (Exclusions)
+                </h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">P&I 並非萬能，有許多風險被列為除外不保事項，主要有：</p>
+                <ul class="list-none space-y-4">
+                    <li class="flex items-start p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-1.414 1.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-1.414-1.414A1 1 0 006.586 13H4" />
+                        </svg>
+                        <div>
+                            <span class="font-bold text-red-700">船體本身損失：</span>
+                            <span class="text-gray-700">這是「船體險」(H&M) 的承保範圍，P&I 不保。</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <div>
+                            <span class="font-bold text-red-700">戰爭風險 (War Risks)：</span>
+                            <span class="text-gray-700">如戰爭、內戰、叛亂等。船東需另行投保「戰爭險」。</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                        <div>
+                            <span class="font-bold text-red-700">罷工、暴動 (SR&CC)：</span>
+                            <span class="text-gray-700">通常也需要另行加保。</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m-6 8a9 9 0 11-9-9 9 9 0 019 9z" />
+                        </svg>
+                        <div>
+                            <span class="font-bold text-red-700">核風險 (Nuclear Risks)：</span>
+                            <span class="text-gray-700">由核燃料、核廢料或核武器引起的風險。</span>
+                        </div>
+                    </li>
+                     <li class="flex items-start p-4 bg-red-50 rounded-lg border border-red-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-600 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.876c.525 0 .962-.328 1.13-.79l1.4-4.2a1.125 1.125 0 00-2.26 0l-1.4 4.2a.113.113 0 01-1.13 0H7.938a.113.113 0 01-1.13 0l-1.4-4.2a1.125 1.125 0 00-2.26 0l1.4 4.2c.168.462.605.79 1.13.79z" />
+                        </svg>
+                        <div>
+                            <span class="font-bold text-red-700">船東故意行為 (Owner's Wilful Misconduct)：</span>
+                            <span class="text-gray-700">保險不承保被保險人的故意或不法行為。</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 4. 理賠通報與機制 -->
+            <section id="claims" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-700 mt-8 mb-5 border-l-4 border-blue-500 pl-4">
+                    4. 理賠通報與理賠機制
+                </h2>
+                
+                <h3 class="text-xl font-bold text-gray-800 mb-3">A. 理賠通報 (Claims Notification)</h3>
+                <p class="text-base md:text-lg leading-relaxed mb-4">當發生「任何」可能導致 P&I 索賠的事故時，船東（船長或管理公司）必須：</p>
+                <ol class="list-decimal list-inside space-y-3 pl-4 text-gray-700">
+                    <li><strong>立即通報 (Immediate Notice)：</strong> 毫不延遲地通知 P&I Club 或其指定的當地通代 (Correspondent)。延遲通報可能導致保險權益受損。</li>
+                    <li><strong>提供完整資訊 (Provide Full Information)：</strong> 提交所有相關文件、證據、航海日誌、照片、證人陳述等。</li>
+                    <li><strong>切勿承認責任 (Do Not Admit Liability)：</strong> 在未經 P&I Club 同意前，船東「絕對不可」向任何第三方承認責任或承諾賠償。</li>
+                    <li><strong>採取減損措施 (Mitigate Loss)：</strong> 必須採取一切合理措施，防止或減少損失擴大。</li>
+                </ol>
+
+                <h3 class="text-xl font-bold text-gray-800 mt-8 mb-3">B. 理賠機制 (Claims Mechanism)</h3>
+                <p class="text-base md:text-lg leading-relaxed mb-4">收到通報後，P&I Club 的標準處理流程如下：</p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center mr-4">1</div>
+                        <p class="flex-1"><strong>指派專家：</strong>Club 會立即指派當地的公證人 (Surveyor) 登船調查、蒐證；並視情況指派律師 (Lawyer) 提供法律意見。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center mr-4">2</div>
+                        <p class="flex-1"><strong>調查與評估 (Investigation & Assessment)：</strong> 評估事故原因、責任歸屬，以及預估的索賠金額。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center mr-4">3</div>
+                        <p class="flex-1"><strong>協商或抗辯 (Negotiation or Defense)：</strong> Club 將代表船東與索賠方進行談判、協商和解。如果無法和解，Club 將主導後續的訴訟或仲裁，為船東提供法律抗辯。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center mr-4">4</div>
+                        <p class="flex-1"><strong>支付與攤賠 (Payment & Reimbursement)：</strong> P&I 理賠通常遵循「先付後賠」(Pay to be paid) 原則。即船東必須先依法或經 Club 同意和解後，先行支付賠償金給第三方，然後再憑收據和文件向 Club 申請攤賠（報銷）。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 隨堂測驗 -->
+            <section id="quiz" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-700 mt-8 mb-5 border-l-4 border-blue-500 pl-4">
+                    5. 隨堂測驗 (Self-Assessment Quiz)
+                </h2>
+                <p class="text-base md:text-lg leading-relaxed mb-6">測試一下您對 P&I 的理解程度吧！</p>
+                
+                <!-- 測驗容器 -->
+                <div id="quiz-container" class="space-y-8">
+                    <!-- JavaScript 將在此處動態生成問題 -->
+                </div>
+
+                <!-- 按鈕和結果 -->
+                <div class="text-center mt-10 space-x-4">
+                    <button id="submit-quiz" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-bold shadow-md">
+                        提交答案
+                    </button>
+                    <button id="reset-quiz" class="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition duration-300 text-lg font-bold shadow-md">
+                        重新測驗
+                    </button>
+                </div>
+                
+                <div id="quiz-results" class="text-center text-2xl font-bold mt-8">
+                    <!-- 測驗結果將顯示在此 -->
+                </div>
+            </section>
+        </main>
     </div>
 
-    <!-- Topic 5: Salvage -->
-    <div id="topic5" class="section">
-        <h2>🌊 海上救助 (Salvage)</h2>
-        <div class="concept-card">
-            <h3>雙軌制：救財產 vs 救環境</h3>
-            <p><strong>1. 傳統救助 (No Cure No Pay)</strong>：成功救到船和貨才有錢拿。這筆錢由 <span class="highlight">H&M (和貨主)</span> 依價值分攤。</p>
-            <p><strong>2. SCOPIC 條款</strong>：當船沒救到（或價值太低），但救助人「盡力保護了環境」，可以拿一筆特別補償金。這筆錢由 <span class="highlight">P&I</span> 支付。</p>
-        </div>
-        <div class="qa-card">
-            <h3>💡 你的關鍵提問：SCOPIC 是什麼？</h3>
-            <p>它是「救環境」的保底獎金。目的是防止救助公司因為覺得「船太爛救不活、拿不到錢」而放棄救援，導致油污外洩。P&I 為了環保，願意支付這筆費用。</p>
-        </div>
+    <!-- JavaScript 區域 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 測驗題目資料
+            const quizData = [
+                {
+                    question: "1. P&I 船東責任險主要承保的是什麼？",
+                    options: {
+                        A: "船舶本身的損壞（如船體、機器）",
+                        B: "船東對第三方的法律賠償責任",
+                        C: "戰爭和罷工造成的損失",
+                        D: "船東的營運利潤損失"
+                    },
+                    correctAnswer: "B",
+                    explanation: "P&I 主要承保對第三方的責任。船舶本身的損壞由船體險(H&M)承保。"
+                },
+                {
+                    question: "2. 船舶碰撞造成「船體本身」的修理費用，應由哪種保險負責？",
+                    options: {
+                        A: "P&I 保險",
+                        B: "船體險 (H&M)",
+                        C: "貨物保險",
+                        D: "戰爭險"
+                    },
+                    correctAnswer: "B",
+                    explanation: "船體險 (H&M) 負責承保船舶本身的實體損失或損壞。"
+                },
+                {
+                    question: "3. P&I Club（保賠協會）的組織性質，在傳統上最接近下列何者？",
+                    options: {
+                        A: "商業營利保險公司",
+                        B: "政府監管機構",
+                        C: "由船東組成的互保組織",
+                        D: "海事律師事務所"
+                    },
+                    correctAnswer: "C",
+                    explanation: "P&I Clubs 傳統上是船東會員制的互保組織，共同分攤風險。"
+                },
+                {
+                    question: "4. 船員在工作期間因意外受傷，船東需負擔的醫療和遣返費用，是否屬於 P&I 承保範圍？",
+                    options: {
+                        A: "是，這是 P&I 的核心承保項目之一",
+                        B: "否，這應由船員個人意外險負責",
+                        C: "否，這由船體險負責",
+                        D: "不一定，需視船員國籍而定"
+                    },
+                    correctAnswer: "A",
+                    explanation: "對船員的傷亡、疾病和遣返責任是 P&I 的主要承保範圍。"
+                },
+                {
+                    question: "5. 因「戰爭」導致船舶沉沒，其造成的油污清除費用，P&I Club 是否會依標準條款理賠？",
+                    options: {
+                        A: "會，油污是 P&I 的承保範圍",
+                        B: "不會，因為「戰爭風險」是 P&I 的標準除外不保事項",
+                        C: "會，但只賠一半",
+                        D: "不會，油污應由政府負責"
+                    },
+                    correctAnswer: "B",
+                    explanation: "戰爭風險 (War Risks) 是 P&I 的標準除外條款，相關責任需投保戰爭險。"
+                },
+                {
+                    question: "6. 船舶發生可能導致 P&I 索賠的事故時，船長或船東的第一要務是什麼？",
+                    options: {
+                        A: "立即向對方承認責任並協商賠償金額",
+                        B: "立即通知 P&I Club 或其當地通代",
+                        C: "盡快修理船舶，當作沒發生",
+                        D: "先等待對方提出訴訟再說"
+                    },
+                    correctAnswer: "B",
+                    explanation: "立即通報是船東的首要義務，以便 Club 能及時介入處理。"
+                },
+                {
+                    question: "7. 在 P&I Club 同意之前，船東是否可以自行向受害的第三方「承認責任」？",
+                    options: {
+                        A: "可以，這樣可以展現誠意",
+                        B: "不可以，這會嚴重妨礙 Club 的抗辯權利，可能導致拒賠",
+                        C: "可以，但金額不能超過 1 萬美金",
+                        D: "都可以，沒有影響"
+                    },
+                    correctAnswer: "B",
+                    explanation: "船東切勿承認責任，以免影響 Club 未來的抗辯策略和權益。"
+                },
+                {
+                    question: "8. P&I 理賠機制中的「Pay to be paid」原則指的是什麼？",
+                    options: {
+                        A: "P&I Club 必須先付款給第三方，船東才能結案",
+                        B: "船東必須先依法支付賠償金給第三方，才能向 Club 申請攤賠",
+                        C: "只要船東有付款意願，Club 就會先墊付",
+                        D: "這是一句海上的古老諺語，沒有實際意義"
+                    },
+                    correctAnswer: "B",
+                    explanation: "「先付後賠」是 P&I 的重要原則，船東需先承擔法律責任並支付，再向 Club 報銷。"
+                },
+                {
+                    question: "9. 船舶航行中，因船員疏失導致「貨物受潮損壞」，貨主向船東索賠。這是否屬於 P&I 承保範圍？",
+                    options: {
+                        A: "否，貨物應由貨主自行投保貨物險",
+                        B: "是，P&I 承保船東對貨物的法律賠償責任",
+                        C: "否，這是船體險的範圍",
+                        D: "是，但 P&I 只負責賠償船員"
+                    },
+                    correctAnswer: "B",
+                    explanation: "雖然貨主有貨物險，但若損壞是船東疏失造成，P&I 會承保船東對貨主的「責任」。"
+                },
+                {
+                    question: "10. 船舶不慎碰撞碼頭，導致「碼頭設施損壞」，此責任由何者承保？",
+                    options: {
+                        A: "P&I (碰撞固定或浮動物體 FFO 責任)",
+                        B: "船體險 (H&M)",
+                        C: "碼頭的財產保險",
+                        D: "船東必須自行負責，保險不賠"
+                    },
+                    correctAnswer: "A",
+                    explanation: "碰撞固定或浮動物體 (Damage to Fixed and Floating Objects, FFO) 是 P&I 的標準承保範圍。"
+                }
+            ];
 
-        <div class="quiz-container">
-            <p class="question">🧠 隨堂測驗 (1/1)：</p>
-            <p>船沉了（財產價值 0），但救助人依 SCOPIC 條款要求 200 萬「環保獎金」。誰買單？</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic5-fb', '答錯了！H&M 是 No Cure No Pay，船沉了 H&M 就不付救助金了。')">A. 全部找 H&M</button>
-                <button class="option-btn" onclick="checkAnswer(this, true, 'topic5-fb', '答對了！SCOPIC 是 P&I 為了鼓勵環保而設的特別條款，由 P&I 買單。')">B. 全部找 P&I</button>
-                <button class="option-btn" onclick="checkAnswer(this, false, 'topic5-fb', '答錯了！這兩者在此情境下分工明確。')">C. 一半找 H&M，一半找 P&I</button>
-            </div>
-            <div id="topic5-fb" class="feedback"></div>
-        </div>
-    </div>
+            const quizContainer = document.getElementById('quiz-container');
+            const resultsContainer = document.getElementById('quiz-results');
+            const submitButton = document.getElementById('submit-quiz');
+            const resetButton = document.getElementById('reset-quiz');
 
-</div>
+            let submissionMade = false;
 
-<footer>
-    <p>由你的 AI 輔導員協助製作 🚀 | 隨時可以回來複習，我們繼續加油！</p>
-</footer>
+            // 建立測驗
+            function buildQuiz() {
+                submissionMade = false;
+                const output = [];
+                quizData.forEach((currentQuestion, questionNumber) => {
+                    const options = [];
+                    for (const letter in currentQuestion.options) {
+                        options.push(
+                            `<label class="block p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition duration-200 cursor-pointer">
+                                <input type="radio" name="question${questionNumber}" value="${letter}" class="mr-3 text-blue-600 focus:ring-blue-500">
+                                <span class="font-medium">${letter}.</span>
+                                <span class="text-gray-700">${currentQuestion.options[letter]}</span>
+                            </label>`
+                        );
+                    }
 
-<script>
-    // Tab Functionality
-    function openTab(tabId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(sec => sec.classList.remove('active'));
-        
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
+                    output.push(
+                        `<div class="question-item p-5 rounded-xl shadow-sm bg-white border border-gray-100 transition duration-300" data-q-index="${questionNumber}">
+                            <div class="text-lg font-bold text-gray-900 mb-4">${currentQuestion.question}</div>
+                            <div class="options-container space-y-3">${options.join('')}</div>
+                            <div class="explanation mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-800" style="display: none;"></div>
+                        </div>`
+                    );
+                });
+                quizContainer.innerHTML = output.join('');
+                resultsContainer.innerHTML = '';
+            }
 
-    // Quiz Functionality
-    function checkAnswer(btn, isCorrect, feedbackId, feedbackText) {
-        const feedbackEl = document.getElementById(feedbackId);
-        const parentOptions = btn.parentElement;
-        
-        // Disable all buttons in this question
-        const allBtns = parentOptions.querySelectorAll('.option-btn');
-        allBtns.forEach(b => {
-            b.style.pointerEvents = 'none';
-            b.classList.remove('selected', 'correct', 'wrong');
+            // 顯示結果
+            function showResults() {
+                if (submissionMade) return; // 防止重複提交
+                submissionMade = true;
+
+                const answerContainers = quizContainer.querySelectorAll('.question-item');
+                let numCorrect = 0;
+
+                quizData.forEach((currentQuestion, questionNumber) => {
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                    const explanationEl = answerContainer.querySelector('.explanation');
+
+                    if (userAnswer === currentQuestion.correctAnswer) {
+                        numCorrect++;
+                        answerContainer.classList.add('correct');
+                    } else {
+                        answerContainer.classList.add('incorrect');
+                        // 如果答錯，標示出正確答案
+                        const correctOptionLabel = answerContainer.querySelector(`input[value=${currentQuestion.correctAnswer}]`).parentElement;
+                        correctOptionLabel.classList.add('reveal-correct-answer');
+                    }
+                    
+                    // 顯示解釋
+                    explanationEl.innerHTML = `<strong>答案：${currentQuestion.correctAnswer}.</strong> ${currentQuestion.explanation}`;
+                    explanationEl.style.display = 'block';
+
+                    // 禁用所有選項
+                    const radioButtons = answerContainer.querySelectorAll('input[type=radio]');
+                    radioButtons.forEach(radio => radio.disabled = true);
+                });
+
+                // 顯示總分
+                let scoreColor = 'text-green-600';
+                if (numCorrect < 5) {
+                    scoreColor = 'text-red-600';
+                } else if (numCorrect < 8) {
+                    scoreColor = 'text-yellow-600';
+                }
+                resultsContainer.innerHTML = `您答對了 ${numCorrect} / ${quizData.length} 題！`;
+                resultsContainer.className = `text-center text-3xl font-bold mt-8 ${scoreColor} animate-pulse`;
+            }
+
+            // 重置測驗
+            function resetQuiz() {
+                buildQuiz(); // 重建測驗
+                // 移除所有 radio 按鈕的 disabled 屬性 (在 buildQuiz 中已完成)
+            }
+
+            // 綁定事件
+            submitButton.addEventListener('click', showResults);
+            resetButton.addEventListener('click', resetQuiz);
+
+            // 初始建立測驗
+            buildQuiz();
         });
-
-        // Mark the clicked button
-        btn.classList.add('selected');
-
-        feedbackEl.style.display = 'block';
-        feedbackEl.innerHTML = `<strong>${feedbackText}</strong>`;
-        
-        if (isCorrect) {
-            btn.classList.add('correct');
-            feedbackEl.className = 'feedback correct';
-        } else {
-            btn.classList.add('wrong');
-            feedbackEl.className = 'feedback wrong';
-            
-            // Highlight the correct answer
-            Array.from(allBtns).find(b => b.onclick.toString().includes('true')).classList.add('correct');
-        }
-    }
-</script>
+    </script>
 
 </body>
 </html>
